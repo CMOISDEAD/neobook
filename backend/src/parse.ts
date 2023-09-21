@@ -9,6 +9,7 @@ import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
 import { config } from "./config";
+import rehypeLinks from "./plugins/rehype/rehypeLinks";
 
 export const parseNote = async (note: string) => {
   const markdown = Bun.file(`${config.notesDir}/${note}.md`);
@@ -18,6 +19,7 @@ export const parseNote = async (note: string) => {
     .use(remarkMath)
     .use(remarkRehype)
     .use(rehypeCode)
+    // .use(rehypeLinks)
     .use(rehypePrettyCode, {
       theme: "slack-dark",
     })
