@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "rehype-katex": "^6.0.3",
+    "rehype-pretty-code": "^0.10.1",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-stringify": "^10.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-math": "^5.1.1",
+    "remark-parse": "^10.0.2",
+    "remark-rehype": "^10.1.0",
+    "shiki": "^0.14.4",
+    "socket.io": "^4.7.2",
+    "unified": "^11.0.3"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "@types/express": "^4.17.17"
+  },
+  "module": "src/index.js"
+}
