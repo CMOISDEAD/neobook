@@ -1,3 +1,4 @@
 export const config = {
-  notesDir: "/home/camilo/notes/",
+  notesDir: "./notes",
+  imagesDir: "/home/camilo/Pictures",
 };

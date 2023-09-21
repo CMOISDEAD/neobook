@@ -4,8 +4,8 @@ import cors from "cors";
 import chokidar from "chokidar";
 import { Server } from "socket.io";
 import { parseNote } from "./parse";
-import router from "./routes";
 import { config } from "./config";
+import router from "./routes";
 
 let globalFile = "";
 const app = express();
@@ -17,7 +17,7 @@ const io = new Server(server, {
 });
 
 app.set("port", process.env.PORT || 3000);
-app.use(express.static("/home/camilo/Pictures"));
+app.use(express.static(config.imagesDir));
 
 app.use(cors());
 app.use("/", router);
