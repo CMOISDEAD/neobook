@@ -6,7 +6,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex justify-center content-center items-center w-full h-full">
+    <div className="flex justify-center content-center items-center w-full h-full min-h-screen">
       <button
         className="text-5xl transition-colors text-primary hover:text-primary-focus"
         onClick={handleClick}

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  RxArrowLeft,
   RxAvatar,
   RxFileText,
   RxGithubLogo,
@@ -66,10 +65,16 @@ export const Sidebar = () => {
           </ul>
         </div>
         <div className="pt-1 border-t border-primary/50 join">
-          <button className="flex gap-4 content-center items-center w-1/3 btn join-item">
+          <button
+            className="flex gap-4 content-center items-center w-1/3 btn join-item"
+            disabled
+          >
             <RxAvatar />
           </button>
-          <button className="flex gap-4 content-center items-center w-1/3 btn join-item">
+          <button
+            className="flex gap-4 content-center items-center w-1/3 btn join-item"
+            disabled
+          >
             <RxRulerSquare />
           </button>
           <a
