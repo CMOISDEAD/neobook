@@ -9,17 +9,17 @@ import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
 import { config } from "./config";
-import rehypeLinks from "./plugins/rehype/rehypeLinks";
+import rehypeImages from "./plugins/rehype/rehypeImages";
 
 export const parseNote = async (note: string) => {
   const markdown = Bun.file(`${config.notesDir}/${note}.md`);
   const processor = await unified()
     .use(remarkParse)
-    .use(remarkGfm) // FIX: https://github.com/remarkjs/remark-gfm/issues/57
+    .use(remarkGfm)
     .use(remarkMath)
     .use(remarkRehype)
     .use(rehypeCode)
-    // .use(rehypeLinks)
+    .use(rehypeImages)
     .use(rehypePrettyCode, {
       theme: "slack-dark",
     })
