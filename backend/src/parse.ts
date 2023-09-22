@@ -15,7 +15,7 @@ export const parseNote = async (note: string) => {
   const markdown = Bun.file(`${config.notesDir}/${note}.md`);
   const processor = await unified()
     .use(remarkParse)
-    // .use(remarkGfm) // FIX: https://github.com/remarkjs/remark-gfm/issues/57
+    .use(remarkGfm) // FIX: https://github.com/remarkjs/remark-gfm/issues/57
     .use(remarkMath)
     .use(remarkRehype)
     .use(rehypeCode)
