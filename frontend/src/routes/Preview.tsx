@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Viewer } from "../components/Viewer";
-import useStoreApp from "../store/store";
+import { useSocket } from "../hooks/useSocket";
 
 export const Preview = () => {
   const [html, setHtml] = useState("connecting...");
   const { file } = useParams();
   const navigate = useNavigate();
-  const socket = useStoreApp((state: any) => state.socket);
-  if (socket) socket.emit("select-file", { file });
+  const { socket } = useSocket();
+  socket.emit("select-file", { file });
 
   useEffect(() => {
     if (socket === null) {
