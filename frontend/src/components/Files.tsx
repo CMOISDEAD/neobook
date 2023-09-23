@@ -15,7 +15,13 @@ export const Files = ({ children = [] }: Props) => {
     if (files.length > 0) return;
     (async () => {
       const { data } = await axios.get("http://localhost:3000/files");
-      setFiles(data.children);
+      // sort by length of children
+      setFiles(
+        data.children.sort(
+          (a: any, b: any) =>
+            (b.children?.length || 0) - (a.children?.length || 0)
+        )
+      );
     })();
   }, []);
 
@@ -38,8 +44,10 @@ const Dir = (child: any) => {
     <div className="border border-transparent collapse collapse-arrow border-l-emerald-500">
       <input type="checkbox" />
       <div className="justify-start collapse-title btn bg-emerald-500/10">
-        <GoFileDirectory />
-        {name}
+        <p className="flex overflow-hidden gap-4 h-full text-ellipsis text-start">
+          <GoFileDirectory />
+          {name}
+        </p>
       </div>
       <div className="p-0 collapse-content">
         <ul className="pl-4 m-0">
