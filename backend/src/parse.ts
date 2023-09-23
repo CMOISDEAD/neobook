@@ -10,6 +10,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
 import { config } from "./config";
 import rehypeImages from "./plugins/rehype/rehypeImages";
+import remarkFrontmatter from "remark-frontmatter";
 
 export const parseNote = async (note: string) => {
   const markdown = Bun.file(`${config.notesDir}/${note}.md`);
@@ -17,6 +18,7 @@ export const parseNote = async (note: string) => {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
+    .use(remarkFrontmatter, ["yaml"])
     .use(remarkRehype)
     .use(rehypeCode)
     .use(rehypeImages)

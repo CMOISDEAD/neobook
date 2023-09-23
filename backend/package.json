@@ -13,6 +13,7 @@
     "rehype-pretty-code": "^0.10.1",
     "rehype-sanitize": "^6.0.0",
     "rehype-stringify": "^10.0.0",
+    "remark-frontmatter": "^5.0.0",
     "remark-gfm": "3.0.0",
     "remark-math": "^5.1.1",
     "remark-parse": "^10.0.2",
@@ -22,8 +23,8 @@
     "unified": "^11.0.3"
   },
   "devDependencies": {
-    "bun-types": "latest",
-    "@types/express": "^4.17.17"
+    "@types/express": "^4.17.17",
+    "bun-types": "latest"
   },
   "module": "src/index.js"
 }
