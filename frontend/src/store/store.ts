@@ -1,6 +1,10 @@
 import { create } from "zustand";
 
-const useStoreApp = create((_set) => ({
+interface StoreApp {
+  socket: any;
+}
+
+const useStoreApp = create<StoreApp>((_set) => ({
   socket: null,
 }));
 

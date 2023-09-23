@@ -1,21 +1,11 @@
-import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { io } from "socket.io-client";
 import { Sidebar } from "./Sidebar";
-import useStoreApp from "../store/store";
+import { useSocket } from "../hooks/useSocket";
+import { useEffect } from "react";
 
 export const Root = () => {
   useEffect(() => {
-    const socket: any = io("http://localhost:3000");
-    useStoreApp.setState({ socket });
-    socket.on("connect", () => {
-      console.log("connected");
-    });
-    socket.on("disconnect", () => console.log("disconnect"));
-
-    return () => {
-      socket.disconnect();
-    };
+    useSocket();
   }, []);
 
   return (
