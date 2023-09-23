@@ -2,29 +2,28 @@ import { useEffect, useState } from "react";
 import { RxFileText } from "react-icons/rx";
 import { GoFileDirectory } from "react-icons/go";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { useSocket } from "../hooks/useSocket";
 
-interface Props {
-  children?: any;
-}
-
-export const Files = ({ children = [] }: Props) => {
-  const [files, setFiles] = useState(children);
+export const FileTree = () => {
+  const [files, setFiles] = useState([]);
+  const { socket } = useSocket();
 
   useEffect(() => {
-    if (files.length > 0) return;
-    (async () => {
-      const { data } = await axios.get("http://localhost:3000/files");
-      // sort by length of children
+    socket.emit("get-files");
+    socket.on("update-files", (data: any) => {
       setFiles(
         data.children.sort(
           (a: any, b: any) =>
             (b.children?.length || 0) - (a.children?.length || 0)
         )
       );
-    })();
+    });
   }, []);
 
+  return <Files files={files} />;
+};
+
+const Files = ({ files }: any) => {
   return (
     <ul className="m-0">
       {files.map((child: any, i: number) =>
@@ -51,7 +50,7 @@ const Dir = (child: any) => {
       </div>
       <div className="p-0 collapse-content">
         <ul className="pl-4 m-0">
-          <Files children={children} />
+          <Files files={children} />
         </ul>
       </div>
     </div>
@@ -66,10 +65,9 @@ const File = ({ child, idx }: any) => {
       <NavLink
         to={`/file/${name}`}
         className={({ isActive, isPending }) =>
-          `flex justify-start w-full btn ${
-            isPending
-              ? "bg-zinc-500/10"
-              : isActive
+          `flex justify-start w-full btn ${isPending
+            ? "bg-zinc-500/10"
+            : isActive
               ? "bg-emerald-500/20"
               : "btn-ghost"
           }`

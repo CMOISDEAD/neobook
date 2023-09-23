@@ -6,7 +6,7 @@ import {
   RxHamburgerMenu,
   RxRulerSquare,
 } from "react-icons/rx";
-import { Files } from "./Files";
+import { FileTree } from "./FileTree";
 
 export const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -18,17 +18,15 @@ export const Sidebar = () => {
   return (
     <>
       <button
-        className={`${
-          isOpen ? "hidden" : "block"
-        } flex fixed top-1 left-1 z-50 btn btn-ghost`}
+        className={`${isOpen ? "hidden" : "block"
+          } flex fixed top-1 left-1 z-50 btn btn-ghost`}
         onClick={handleOpen}
       >
         <RxHamburgerMenu />
       </button>
       <div
-        className={`${
-          isOpen ? "block" : "hidden"
-        } flex sticky top-0 flex-col justify-between content-center p-2 w-3/12 h-screen bg-base-200/80`}
+        className={`${isOpen ? "block" : "hidden"
+          } flex sticky top-0 flex-col justify-between content-center p-2 w-3/12 h-screen bg-base-200/80`}
       >
         <div className="files">
           <div className="flex gap-4 justify-between content-center items-center pb-1 border-b border-primary/50">
@@ -39,7 +37,7 @@ export const Sidebar = () => {
               <RxHamburgerMenu />
             </button>
           </div>
-          <Files />
+          <FileTree />
         </div>
         <div className="pt-1 border-t border-primary/50 join">
           <button
