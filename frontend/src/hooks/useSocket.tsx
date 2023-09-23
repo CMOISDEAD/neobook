@@ -12,6 +12,7 @@ const createSocket = () => {
 
 export const useSocket = () => {
   const socket = useStoreApp.getState().socket;
+
   if (!socket) useStoreApp.setState({ socket: createSocket() });
 
   return {
