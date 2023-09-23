@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { RxFileText } from "react-icons/rx";
 import { GoFileDirectory } from "react-icons/go";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 interface Props {

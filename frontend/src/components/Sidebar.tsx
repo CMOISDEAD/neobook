@@ -20,7 +20,7 @@ export const Sidebar = () => {
       <button
         className={`${
           isOpen ? "hidden" : "block"
-        } flex fixed top-1 left-1 z-50 p-2 bg-base-300/80`}
+        } flex fixed top-1 left-1 z-50 btn btn-ghost`}
         onClick={handleOpen}
       >
         <RxHamburgerMenu />
