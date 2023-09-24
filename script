@@ -1,0 +1,45 @@
+#! /usr/bin/sh
+
+# check if node or bun is installed
+if ! command -v node >/dev/null 2>&1; then
+	if ! command -v bun >/dev/null 2>&1; then
+		echo "Please install node or bun."
+		exit 1
+	fi
+fi
+
+# cd to frontend directory
+cd ./frontend || exit
+
+# check if node_modules and dist exists
+if [ ! -d "./node_modules/" ]; then
+	npm install
+fi
+
+# check if dist exists
+if [ ! -d "./dist/" ]; then
+	npm run build
+fi
+
+# cd to backend directory
+cd ../backend || exit
+
+# check if node_modules exists
+if [ ! -d "./node_modules" ]; then
+	bun install
+fi
+
+# cd to root directory
+cd ..
+
+# run frontend and backend
+(cd ./frontend/ && bun run dev &) >/dev/null && (cd ./backend/ && npm run dev &) >/dev/null
+
+# wait for user to exit
+echo "Neobook is running, on port 5173."
+echo "Press Ctrl-c to exit."
+# shellcheck disable=3045
+read -r -d '' _ </dev/tty
+
+# kill all processes
+trap 'trap - TERM && kill -- -$$' INT TERM EXIT

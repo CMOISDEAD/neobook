@@ -40,13 +40,11 @@ const Files = ({ files }: any) => {
 const Dir = (child: any) => {
   const { name, children } = child.child;
   return (
-    <div className="border border-transparent collapse collapse-arrow border-l-emerald-500">
+    <div className="w-full border border-transparent collapse collapse-arrow border-l-emerald-500">
       <input type="checkbox" />
-      <div className="justify-start collapse-title btn bg-emerald-500/10">
-        <p className="flex overflow-hidden gap-4 h-full text-ellipsis text-start">
-          <GoFileDirectory />
-          {name}
-        </p>
+      <div className="flex flex-nowrap gap-4 justify-start w-full h-full collapse-title btn bg-emerald-500/10 text-start">
+        <GoFileDirectory />
+        <p className="line-clamp-1">{name}</p>
       </div>
       <div className="p-0 collapse-content">
         <ul className="pl-4 m-0">
@@ -65,7 +63,7 @@ const File = ({ child, idx }: any) => {
       <NavLink
         to={`/file/${name}`}
         className={({ isActive, isPending }) =>
-          `flex justify-start w-full btn ${isPending
+          `flex flex-nowrap justify-start w-full btn truncate ${isPending
             ? "bg-zinc-500/10"
             : isActive
               ? "bg-emerald-500/20"
