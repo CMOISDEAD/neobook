@@ -59,9 +59,10 @@ Currently you can configure your options in `backend/src/config.ts`, in a future
 - `imagesDir`: The directory where the images will be stored, this images gonna be served by the backend thats the importances of this path.
 
 ## Image Gallery
+![1695532247](https://github.com/CMOISDEAD/neobook/assets/51010598/59c4fa82-2541-496f-bfc8-b51856bd609e)
+![1695532277](https://github.com/CMOISDEAD/neobook/assets/51010598/7e83aed9-c182-4c41-bfdc-e24aa557d483)
+![1695532350](https://github.com/CMOISDEAD/neobook/assets/51010598/8892a0be-37a0-4b49-8beb-5b42fbb19aab)
 
-![1695270436](https://github.com/CMOISDEAD/neobook/assets/51010598/7bf98acc-5700-4a1a-ae48-cb166f714bbd)
-![College Book](https://github.com/CMOISDEAD/neobook/assets/51010598/9b2665ba-4369-4b67-8b60-b3bba9bcf007)
 
 ## Contributing
 
