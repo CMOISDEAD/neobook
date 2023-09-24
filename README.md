@@ -34,18 +34,20 @@ git clone https://github.com/CMOISDEAD/neobook.git
 # frontend steps
 cd frontend
 npm install
-npm run dev # to run the development environment
 
 # backend steps
 cd backend
 npm install
-npm run dev # to run the development environment
-
 ```
 
 ## Usage
 
-Currently is a work in progress, so you can only use the development version as is explained in the installation section.
+Currently is a work in progress, so you can only use the development version, follow the next instructions.
+
+```bash
+chmod +x ./script
+./script
+```
 
 All the supported markdown syntax can be found [test.md](./backend/notes/progress.md).
 
