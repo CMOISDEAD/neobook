@@ -3,6 +3,7 @@ import { RxFileText } from "react-icons/rx";
 import { GoFileDirectory } from "react-icons/go";
 import { NavLink } from "react-router-dom";
 import { useSocket } from "../hooks/useSocket";
+import { sortByAll } from "../utils/sortBy";
 
 export const FileTree = () => {
   const [files, setFiles] = useState([]);
@@ -11,12 +12,7 @@ export const FileTree = () => {
   useEffect(() => {
     socket.emit("get-files");
     socket.on("update-files", (data: any) => {
-      setFiles(
-        data.children.sort(
-          (a: any, b: any) =>
-            (b.children?.length || 0) - (a.children?.length || 0)
-        )
-      );
+      setFiles(sortByAll(data.children));
     });
   }, []);
 
@@ -26,12 +22,18 @@ export const FileTree = () => {
 const Files = ({ files }: any) => {
   return (
     <ul className="m-0">
-      {files.map((child: any, i: number) =>
-        child.children ? (
-          <Dir child={child} key={i} idx={i} />
-        ) : (
-          <File child={child} key={i} idx={i} />
+      {files.length ? (
+        files.map((child: any, i: number) =>
+          child.children ? (
+            <Dir child={child} key={i} idx={i} />
+          ) : (
+            <File child={child} key={i} idx={i} />
+          )
         )
+      ) : (
+        <p className="mt-3 text-sm text-center capitalize text-neutral-500">
+          no files
+        </p>
       )}
     </ul>
   );
@@ -48,7 +50,11 @@ const Dir = (child: any) => {
       </div>
       <div className="p-0 collapse-content">
         <ul className="pl-4 m-0">
-          <Files files={children} />
+          {children.length ? (
+            <Files files={children} />
+          ) : (
+            <p className="mt-3 text-sm capitalize text-neutral-500">no files</p>
+          )}
         </ul>
       </div>
     </div>
@@ -63,9 +69,10 @@ const File = ({ child, idx }: any) => {
       <NavLink
         to={`/file/${name}`}
         className={({ isActive, isPending }) =>
-          `flex flex-nowrap justify-start w-full btn truncate ${isPending
-            ? "bg-zinc-500/10"
-            : isActive
+          `flex flex-nowrap justify-start w-full btn truncate ${
+            isPending
+              ? "bg-zinc-500/10"
+              : isActive
               ? "bg-emerald-500/20"
               : "btn-ghost"
           }`

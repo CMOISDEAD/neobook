@@ -9,7 +9,7 @@ export const Root = () => {
   }, []);
 
   return (
-    <div className="flex relative gap-4">
+    <div className="flex relative">
       <Sidebar />
       <div className="w-full">
         <Outlet />

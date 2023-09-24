@@ -8,19 +8,21 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
 import remarkGfm from "remark-gfm";
-import rehypeImages from "./plugins/rehype/rehypeImages";
 import remarkFrontmatter from "remark-frontmatter";
+import remarkPlant from "@akebifiky/remark-simple-plantuml";
+import remarkImages from "./plugins/remark/remarkImage";
 
 export const parseNote = async (filepath: string) => {
   const markdown = Bun.file(filepath);
   const processor = await unified()
     .use(remarkParse)
+    .use(remarkImages)
     .use(remarkGfm)
     .use(remarkMath)
     .use(remarkFrontmatter, ["yaml"])
+    .use(remarkPlant)
     .use(remarkRehype)
     .use(rehypeCode)
-    .use(rehypeImages)
     .use(rehypePrettyCode, {
       theme: "slack-dark",
     })
