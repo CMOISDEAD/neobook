@@ -17,6 +17,7 @@
     "rehype-stringify": "^10.0.0",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "3.0.0",
+    "remark-hint": "^1.0.10",
     "remark-math": "^5.1.1",
     "remark-mermaidjs": "^6.0.0",
     "remark-parse": "^10.0.2",

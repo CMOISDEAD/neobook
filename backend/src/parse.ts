@@ -11,6 +11,7 @@ import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkPlant from "@akebifiky/remark-simple-plantuml";
 import remarkImages from "./plugins/remark/remarkImage";
+import remarkHint from "remark-hint";
 
 export const parseNote = async (filepath: string) => {
   const markdown = Bun.file(filepath);
@@ -21,6 +22,7 @@ export const parseNote = async (filepath: string) => {
     .use(remarkMath)
     .use(remarkFrontmatter, ["yaml"])
     .use(remarkPlant)
+    .use(remarkHint)
     .use(remarkRehype)
     .use(rehypeCode)
     .use(rehypePrettyCode, {
