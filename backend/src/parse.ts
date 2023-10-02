@@ -12,6 +12,8 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkPlant from "@akebifiky/remark-simple-plantuml";
 import remarkImages from "./plugins/remark/remarkImage";
 import remarkHint from "remark-hint";
+import rehypeReact from "rehype-react";
+import rehypeLinks from "./plugins/rehype/rehypeLinks";
 
 export const parseNote = async (filepath: string) => {
   const markdown = Bun.file(filepath);
@@ -24,11 +26,13 @@ export const parseNote = async (filepath: string) => {
     .use(remarkPlant)
     .use(remarkHint)
     .use(remarkRehype)
+    .use(rehypeLinks)
     .use(rehypeCode)
     .use(rehypePrettyCode, {
       theme: "slack-dark",
     })
     .use(rehypeKatex)
+    .use(rehypeReact)
     .use(rehypeStringify)
     .process(await markdown.text());
   const content = processor.toString();

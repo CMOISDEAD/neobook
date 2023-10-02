@@ -1,15 +1,16 @@
+import { visitParents } from "unist-util-visit-parents";
+
 const rehypeLinks = () => {
   return (tree: any) => {
-    tree.children = tree.children.map((node: any) => {
-      if (node.tagName !== "p") return node;
-      const children = node.children[0];
-      if (children.tagName !== "a") return node;
-      children.tagName = "Link";
-      children.properties = {
-        to: children.properties.href,
+    visitParents(tree, "element", (node: any, ancestors: any) => {
+      if (node.tagName !== "a") return;
+      const { properties } = node;
+      if (!properties.href.startsWith("file:")) return;
+      const href = properties.href.replace("file:", "");
+      node.tagName = "Link";
+      node.properties = {
+        to: `${href}`,
       };
-      console.log(children);
-      return children;
     });
   };
 };

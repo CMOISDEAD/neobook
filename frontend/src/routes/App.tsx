@@ -16,6 +16,10 @@ const App = () => {
         </button>
       </div>
       <p className="text-xs text-center text-gray-500">
+        Press <kbd className="kbd">Ctrl</kbd> +<kbd className="kbd">k</kbd> to
+        open the command menu.
+      </p>
+      <p className="text-xs text-center text-gray-500">
         Neobook is under development, check our{" "}
         <a
           href="https://github.com/CMOISDEAD/neobook"
